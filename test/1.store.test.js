@@ -1,11 +1,9 @@
-
 import Store from '../src/models/Store';
 
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const server = require('../server');
-const should = chai.should();
-const url = 'http://localhost:8000';
+import chai from 'chai'
+import chaiHttp from 'chai-http'
+import server from '../server'
+const should = chai.should()
 
 chai.use(chaiHttp);
 
@@ -16,7 +14,7 @@ describe('Stores', () => {
     })
   })
   it('it should GET all the stores', (done) => {
-    chai.request(url)
+    chai.request(server)
       .get('/api/stores')
       .end((err,res) => {
         res.should.have.status(200);
@@ -27,7 +25,7 @@ describe('Stores', () => {
   })
   it('it should not POST a store without name', (done) => {
     let store = new Store({email:"store@store.com"});
-    chai.request(url)
+    chai.request(server)
       .post('/api/stores')
       .send(store)
       .end((err,res) => {
@@ -39,8 +37,8 @@ describe('Stores', () => {
   })
   let storeId;
   it('it should POST a store', (done) => {
-    let store = new Store({name: "sotre1", email:"store@store.com"});
-    chai.request(url)
+    let store = new Store({_id: "store1", name: "store1", email:"store@store.com"});
+    chai.request(server)
       .post('/api/stores')
       .send(store)
       .end((err,res) => {
@@ -52,7 +50,7 @@ describe('Stores', () => {
       })
   })
   it('it should GET a store by id', (done) => {
-    chai.request(url)
+    chai.request(server)
       .get('/api/stores/' + storeId)
       .end((err,res) => {
         res.should.have.status(200);
@@ -62,7 +60,7 @@ describe('Stores', () => {
       })
   })
   it('it should GET all the stores', (done) => {
-    chai.request(url)
+    chai.request(server)
       .get('/api/stores')
       .end((err,res) => {
         res.should.have.status(200);
@@ -72,7 +70,7 @@ describe('Stores', () => {
       })
   })
   it('it should PUT a certain store by id', (done) => {
-    chai.request(url)
+    chai.request(server)
       .put('/api/stores/' + storeId)
       .send({name: "STORE111111"})
       .end((err,res) => {
@@ -84,7 +82,7 @@ describe('Stores', () => {
       })
   })
   it('it should DELETE a certain store', (done) => {
-    chai.request(url)
+    chai.request(server)
       .delete('/api/stores/' + storeId)
       .end((err,res) => {
         res.should.have.status(200);
@@ -93,7 +91,7 @@ describe('Stores', () => {
       })
   })
   it('it should GET all the stores', (done) => {
-    chai.request(url)
+    chai.request(server)
       .get('/api/stores')
       .end((err,res) => {
         res.should.have.status(200);

@@ -1,14 +1,12 @@
 import Store from '../src/models/Store';
 import Menu from '../src/models/Menu';
 
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const server = require('../server');
-const should = chai.should();
+import chai from 'chai'
+import chaiHttp from 'chai-http'
+import server from '../server'
+const should = chai.should()
 
 chai.use(chaiHttp);
-
-const url = 'http://localhost:8000';
 
 describe('Menus', () => {
   before((done) => {
@@ -18,8 +16,8 @@ describe('Menus', () => {
   })
   let storeId;
   it('it should POST a store', (done) => {
-    let store = new Store({name: "store1", email:"store@store.com"});
-    chai.request(url)
+    let store = new Store({_id: "store1", name: "store1", email:"store@store.com"});
+    chai.request(server)
       .post('/api/stores')
       .send(store)
       .end((err,res) => {
@@ -33,7 +31,7 @@ describe('Menus', () => {
   let menuId;
   it('it should POST a menu to a store', (done) => {
     let menu = new Menu({name: "gyros", price: 8.23, vegan: true, description: "yummm"});
-    chai.request(url)
+    chai.request(server)
       .post(`/api/menus/store/${storeId}`)
       .send(menu)
       .end((err,res) => {
@@ -46,7 +44,7 @@ describe('Menus', () => {
   })
 
   it('it should GET all the MENUS', (done) => {
-    chai.request(url)
+    chai.request(server)
       .get(`/api/menus/store/${storeId}`)
       .end((err,res) => {
         res.should.have.status(200);
@@ -58,7 +56,7 @@ describe('Menus', () => {
   })
 
   it('it should GET a menu by menuId', (done) => {
-    chai.request(url)
+    chai.request(server)
       .get(`/api/menus/${menuId}`)
       .end((err,res) => {
         res.should.have.status(200);
@@ -70,7 +68,7 @@ describe('Menus', () => {
   let menuId2;
   it('should POST a menu to a store', (done) => {
     let menu = new Menu({name: "plum tea", price: 2.05, vegan: true, description: "caution, hot!"});
-    chai.request(url)
+    chai.request(server)
       .post(`/api/menus/store/${storeId}`)
       .send(menu)
       .end((err,res) => {
@@ -82,7 +80,7 @@ describe('Menus', () => {
       })
   })
   it('should GET all the MENUS', (done) => {
-    chai.request(url)
+    chai.request(server)
       .get(`/api/menus/store/${storeId}`)
       .end((err,res) => {
         res.should.have.status(200);
@@ -93,7 +91,7 @@ describe('Menus', () => {
   })
 
   it('should PUT a certain store by id', (done) => {
-    chai.request(url)
+    chai.request(server)
       .put(`/api/menus/${menuId2}`)
       .send({name: "lemon tea"})
       .end((err,res) => {
@@ -106,7 +104,7 @@ describe('Menus', () => {
   })
 
   it('should DELETE a certain menu', (done) => {
-    chai.request(url)
+    chai.request(server)
       .delete(`/api/menus/${menuId}`)
       .end((err,res) => {
         res.should.have.status(200);
@@ -116,7 +114,7 @@ describe('Menus', () => {
   })
 
   it('should GET all the menus', (done) => {
-    chai.request(url)
+    chai.request(server)
       .get(`/api/menus/store/${storeId}`)
       .end((err,res) => {
         res.should.have.status(200);

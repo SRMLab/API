@@ -1,4 +1,3 @@
-console.log('STORES CONTROLLER IS ON!');
 var mongoose = require('mongoose');
 var Store = mongoose.model('Store');
 

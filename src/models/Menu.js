@@ -8,7 +8,7 @@ const MenuSchema = new Schema({
   price: { type: Number, required: true },
   vegan: Boolean,
   description: String,
-  _store: {type: Schema.Types.ObjectId, ref: 'Store'},
+  _store: {type: String, ref: 'Store'},
 }, {
   timestamps: true
 });

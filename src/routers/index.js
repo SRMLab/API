@@ -7,10 +7,12 @@ const router = express.Router()
 // })
 
 import inventoryItemRouter from './inventoryItemRouter'
+import shoppingListRouter from './shoppingListRouter'
 import storeRouter from './storeRouter'
 import menuRouter from './menuRouter'
 
 router.use('/inventory/items', inventoryItemRouter)
+router.use('/shoppingList', shoppingListRouter)
 router.use('/stores', storeRouter)
 router.use('/menus', menuRouter)
 

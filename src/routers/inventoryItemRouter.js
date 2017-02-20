@@ -4,8 +4,8 @@ import InventoryItem from '../models/InventoryItem'
 import InventoryItemController from '../controllers/InventoryItemController'
 
 
-router.get('', (req, res) => {
-  InventoryItemController.getAll()
+router.get('/store/:storeId', (req, res) => {
+  InventoryItemController.getAll(req.params.storeId)
   .then(result => res.json(result))
   .catch(err => res.json(err))
 })
