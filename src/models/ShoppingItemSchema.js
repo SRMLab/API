@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 
 const ShoppingItemSchema = new Schema({
   _item: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'InventoryItem'
   },
   checked: { type: Boolean, default: false },

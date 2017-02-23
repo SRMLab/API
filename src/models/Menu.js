@@ -5,7 +5,8 @@ mongoose.Promise = global.Promise
 const Schema = mongoose.Schema;
 const MenuSchema = new Schema({
   name: { type: String, required: true },
-  price: { type: Number, required: true },
+  categories: [ String ],
+  price: { type: Number },
   vegan: Boolean,
   description: String,
   _store: {type: String, ref: 'Store'},
