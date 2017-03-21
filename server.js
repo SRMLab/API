@@ -1,6 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
+import fetchSquare from './src/apps/fetchSquare';
+fetchSquare(new Date());
+
 var app = express();
 
 mongoose.connect('mongodb://localhost/test');
